@@ -3,10 +3,15 @@
 
 namespace s_rpc {
 
-class transport {
-    virtual ~transport() = default;
+namespace transport {
+
+class Transport {
+public:
+    virtual ~Transport() = default;
     virtual bool send_data(const std::string& data) = 0;
     virtual std::string receive_data() = 0;
 };
 
-} //namespace s_rpc
+} // namespace transport
+
+} // namespace s_rpc

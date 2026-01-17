@@ -1,10 +1,12 @@
 #pragma once
 #include <string>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #include "transport.h"
 namespace s_rpc {
 namespace transport{
 
-class TCP_socket {
+class TCP_socket : public Transport {
 
 public:
 

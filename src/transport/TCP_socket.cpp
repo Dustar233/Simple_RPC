@@ -1,10 +1,9 @@
-#pragma once
 #include <string>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include "TCP_socket.h"
+#include "simple_rpc/transport/TCP_socket.h"
 
 #define MAXSIZE 1024
 
@@ -37,7 +36,7 @@ bool TCP_socket::TCP_listen(int port){
     s_addr.sin_family = AF_INET;
     s_addr.sin_port = htons(port);
     s_addr.sin_addr.s_addr = INADDR_ANY;
-    if(bind(socket_fd, (sockaddr*)&s_addr, sizeof(s_addr) <= 0)){
+    if(bind(socket_fd, (sockaddr*)&s_addr, sizeof(s_addr)) < 0){
         return 0; 
     }
     if(listen(socket_fd, 3) < 0){
@@ -47,7 +46,7 @@ bool TCP_socket::TCP_listen(int port){
 }
 
 bool TCP_socket::send_data(const std::string& data){
-    if(send(socket_fd, data.c_str(), sizeof(data), 0) < 0){
+    if(send(socket_fd, data.c_str(), data.size(), 0) < 0){
         return 0;
     }
     return 1;
@@ -59,6 +58,7 @@ bool TCP_socket::TCP_accept(){
     if(recv_fd < 0){
         return 0;
     }
+    return 1;
 
 }
 
