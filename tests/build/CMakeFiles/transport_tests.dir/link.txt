@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/transport_tests.dir/transport/TCP_socket_test.cpp.o -o transport_tests  lib/libgtest_main.a libsimple_rpc_lib.a lib/libgtest.a 
